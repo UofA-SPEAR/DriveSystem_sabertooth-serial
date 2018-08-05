@@ -113,3 +113,28 @@ saber_err_t SaberMotor::setDeadband(uint8_t deadband) {
 void SaberMotor::setBaudRate(saber_baud_t baudrate) {
     this->sendCommand(15, baudrate);
 }
+
+/**@brief Function to set shutoff voltage from battery
+ *
+ * @note Voltage must be greater than 6v, and less than 30v, in increments of 0.2v
+ */
+saber_err_t SaberMotor::setMinVoltage(float voltage) {
+    // Formula ripped straight from the datasheet
+    uint8_t value = (voltage - 6) * 5;
+
+    if (value > 120) {
+        return SABER_INVALID_VALUE;
+    } else {
+        this->sendCommand(2, value);
+        return SABER_SUCCESS;
+    }
+}
+
+/**@brief Function to set maximum voltage for the batteries
+ *
+ * @note Please don't use this I'm just putting it in for completeness.
+ */
+saber_err_t SaberMotor::setMaxVoltage(float voltage) {
+    // actually you know what.
+    // I'm not implementing this
+}
