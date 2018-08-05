@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BOARD_TAG	Makefile	/^BOARD_TAG	 = uno$/;"	m
+MONITER_PORT	Makefile	/^MONITER_PORT = \/dev\/ttyACM0$/;"	m
+SABERTOOTH_H_	sabertooth.h	2;"	d
+SABER_INVALID_VALUE	sabertooth.h	/^    SABER_INVALID_VALUE,$/;"	e	enum:__anon1
+SABER_SUCCESS	sabertooth.h	/^    SABER_SUCCESS,$/;"	e	enum:__anon1
+SOFT_RX	main.cpp	5;"	d	file:
+SOFT_TX	main.cpp	6;"	d	file:
+SaberMotor	sabertooth.cpp	/^SaberMotor::SaberMotor(uint8_t address, uint8_t motor_num) {$/;"	f	class:SaberMotor
+SaberMotor	sabertooth.h	/^class SaberMotor {$/;"	c
+address	sabertooth.h	/^    uint8_t address;$/;"	m	struct:__anon2
+baudrate	sabertooth.h	/^    uint8_t baudrate;$/;"	m	struct:__anon2
+deadband	sabertooth.h	/^    uint8_t deadband;$/;"	m	struct:__anon2
+loop	main.cpp	/^void loop() {$/;"	f
+motor_num	sabertooth.h	/^    uint8_t motor_num;$/;"	m	struct:__anon2
+ramp_setting	sabertooth.h	/^    uint8_t ramp_setting;$/;"	m	struct:__anon2
+saber_err_t	sabertooth.h	/^} saber_err_t;$/;"	t	typeref:enum:__anon1
+sendCommand	sabertooth.cpp	/^void SaberMotor::sendCommand(uint8_t command, uint8_t value) {$/;"	f	class:SaberMotor
+settings	sabertooth.h	/^        saber_channel_settings_t settings;$/;"	m	class:SaberMotor
+setup	main.cpp	/^void setup() {$/;"	f
+speed	sabertooth.h	/^    int8_t speed;$/;"	m	struct:__anon2

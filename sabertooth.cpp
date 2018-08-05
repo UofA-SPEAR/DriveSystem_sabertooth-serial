@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
-SoftwareSerial saber_serial(SABER_RX, SABER_TX);
+#include "sabertooth.h"
 
 /**@brief Constructor function for SaberMotor class.
  *
- * @details Simply sets a few settings variables.
+ * @details Changes a few settings variables and initialises serial at a baudrate.
  */
-SaberMotor::SaberMotor(uint8_t address, uint8_t motor_num) {
+SaberMotor::SaberMotor(uint8_t address, uint8_t motor_num, uint8_t baudrate) {
     settings.address = address;
     settings.motor_num = motor_num;
 }
@@ -25,3 +25,5 @@ void SaberMotor::sendCommand(uint8_t command, uint8_t value) {
     saber_serial.write(value);
     saber_serial.write(checksum);
 }
+
+

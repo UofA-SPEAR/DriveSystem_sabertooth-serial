@@ -2,9 +2,12 @@
 #define SABERTOOTH_H_
 
 #include <Arduino.h>
-#include <SoftwareSerial>
+#include <SoftwareSerial.h>
 
-extern SoftwareSerial saber_serial(SABER_RX, SABER_TX);
+#define SABER_RX    10 // This pin will be unused
+#define SABER_TX    11 // Doesn't really matter what this is
+
+SoftwareSerial saber_serial(SABER_RX, SABER_TX);
 
 typedef enum {
     SABER_SUCCESS,
@@ -21,7 +24,7 @@ typedef struct {
 
     uint8_t address;
     uint8_t motor_num;
-} saber_channel_settings_t
+} saber_channel_settings_t;
 
 /**@brief Class for controlling a single motor on the Sabertooth.
  *
@@ -33,20 +36,22 @@ typedef struct {
  */
 class SaberMotor {
     public:
+        SaberMotor(uint8_t address, uint8_t motor_num, uint8_t baudrate);
+
         void setSpeedMotor(int8_t speed);
 
         // These config functions apply to both channels
         void setRampingRate(uint8_t ramp_setting);
         void setDeadband(uint8_t deadband);
-
-        // Only sends valid values. You must re-init saber_serial after you call this.
-        // Don't call this if you don't know what you're doing.
         saber_err_t setBaudRate(uint8_t);
+
+        // This *shouldn't* be used but I'm exposing it here anyways
+        void serialInit(uint8_t baudrate);
 
     private:
         saber_channel_settings_t settings;
 
         void sendCommand(uint8_t command, uint8_t value);
-}
+};
 
 #endif
