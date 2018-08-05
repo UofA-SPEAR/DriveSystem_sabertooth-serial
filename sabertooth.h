@@ -24,11 +24,13 @@ typedef struct {
 
     uint8_t ramp_setting;
     uint8_t deadband;
-
     uint8_t baudrate;
 
     uint8_t address;
     uint8_t motor_num;
+
+    float min_voltage;
+    float max_voltage;
 } saber_channel_settings_t;
 
 /**@brief Class for controlling a single motor on the Sabertooth.
@@ -50,7 +52,9 @@ class SaberMotor {
         // These config functions apply to both channels
         void setRampingRate(uint8_t ramp_setting);
         void setDeadband(uint8_t deadband);
-        void setBaudRate(uint8_t);
+        void setBaudRate(uint8_t baudrate);
+        void setMinVoltage(float min_voltage);
+        void setMaxVoltage(float max_voltage);
 
         // This *shouldn't* be used but I'm exposing it here anyways
         void serialInit(uint8_t baudrate);
