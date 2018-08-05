@@ -79,3 +79,16 @@ void SaberMotor::setMotorSpeed(int8_t speed) {
      */
     this->sendCommand(cmd, value);
 }
+
+/**@brief Function to set ramping rate of motor drivers
+ *
+ * @note Valid settings are from 1-80. See datasheet for reference on what values to send.
+ */
+saber_err_t SaberMotor::setRampingRate(uint8_t ramp_setting) {
+    if ( (ramp_setting == 0) || (ramp_setting > 80) ) { // Invalid values
+        return SABER_INVALID_VALUE;
+    } else {
+        this->sendCommand(16, ramp_setting);
+        return SABER_SUCCESS;
+    }
+}
