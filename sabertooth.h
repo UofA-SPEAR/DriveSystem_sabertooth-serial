@@ -60,12 +60,12 @@ class SaberMotor {
         // These config functions apply to both channels
         saber_err_t setRampingRate(uint8_t ramp_setting);
         saber_err_t setDeadband(uint8_t deadband);
-        void        setBaudRate(saber_baud_t baudrate);
+        saber_err_t setBaudRate(saber_baud_t baudrate);
         saber_err_t setMinVoltage(float min_voltage);
         saber_err_t setMaxVoltage(float max_voltage);
 
         // This *shouldn't* be used but I'm exposing it here anyways
-        void serialInit(uint8_t baudrate);
+        void serialInit(uint32_t baudrate);
 
     private:
         saber_channel_settings_t settings;

@@ -16,7 +16,7 @@ SaberMotor::SaberMotor(uint8_t address, saber_motor_t motor_num, uint8_t baudrat
 
 /**@brief Function to initialise soft serial interface
  */
-void SaberMotor::serialInit(uint8_t baudrate) {
+void SaberMotor::serialInit(uint32_t baudrate) {
     // End serial in case it's running
     saber_serial.end();
 
@@ -110,8 +110,32 @@ saber_err_t SaberMotor::setDeadband(uint8_t deadband) {
  *
  * @note only pass saber_baud_t
  */
-void SaberMotor::setBaudRate(saber_baud_t baudrate) {
+saber_err_t SaberMotor::setBaudRate(saber_baud_t baudrate) {
+    uint32_t value;
+
+    switch (baudrate) {
+        case SABER_BAUD_2400:
+            value = 2400;
+            break;
+        case SABER_BAUD_9600:
+            value = 9600;
+            break;
+        case SABER_BAUD_19200:
+            value = 19200;
+            break;
+        case SABER_BAUD_38400:
+            value = 38400;
+            break;
+        case SABER_BAUD_115200:
+            value = 115200;
+            break;
+        default:
+            return SABER_INVALID_VALUE;
+    }
+
     this->sendCommand(15, baudrate);
+    this->serialInit(value);
+    return SABER_SUCCESS;
 }
 
 /**@brief Function to set shutoff voltage from battery
@@ -137,4 +161,5 @@ saber_err_t SaberMotor::setMinVoltage(float voltage) {
 saber_err_t SaberMotor::setMaxVoltage(float voltage) {
     // actually you know what.
     // I'm not implementing this
+    return SABER_SUCCESS;
 }
