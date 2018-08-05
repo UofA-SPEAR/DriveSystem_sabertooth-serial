@@ -20,6 +20,7 @@ typedef struct {
     uint8_t baudrate;
 
     uint8_t address;
+    uint8_t motor_num;
 } saber_channel_settings_t
 
 /**@brief Class for controlling a single motor on the Sabertooth.
