@@ -1,9 +1,13 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
-// Which pins don't matter and we aren't using rx
-#define SOFT_RX 10
-#define SOFT_TX 11
+#include "sabertooth.h"
+
+// Assuming we're using four motors
+SaberMotor right_front(128, SABER_MOTOR_1, 9600);
+SaberMotor right_back(128, SABER_MOTOR_2, 9600);
+SaberMotor left_front(129, SABER_MOTOR_1, 9600);
+SaberMotor left_back(129, SABER_MOTOR_2, 9600);
 
 void setup() {
     // Serial init
