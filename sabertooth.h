@@ -33,6 +33,8 @@ typedef struct {
  *          settings.
  *
  * @note saber_serial must be initialised with the proper baud rate before this class can be used.
+ *
+ * TODO: add max voltage setting function (and min voltage)
  */
 class SaberMotor {
     public:
