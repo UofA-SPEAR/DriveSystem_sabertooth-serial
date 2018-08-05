@@ -7,7 +7,7 @@
  *
  * @details Changes a few settings variables and initialises serial at a baudrate.
  */
-SaberMotor::SaberMotor(uint8_t address, uint8_t motor_num, uint8_t baudrate) {
+SaberMotor::SaberMotor(uint8_t address, saber_motor_t motor_num, uint8_t baudrate) {
     settings.address = address;
     settings.motor_num = motor_num;
 
@@ -40,4 +40,42 @@ void SaberMotor::sendCommand(uint8_t command, uint8_t value) {
     saber_serial.write(checksum);
 }
 
+/**@brief Function to set a motor speed.
+ *
+ * @param speed Signed integer representing speed to set motor at.
+ *              Value > 0 represents forward motion and Value < 0 represents reverse motion.
+ */
+void SaberMotor::setMotorSpeed(int8_t speed) {
+    /* Motor command numbers:
+     * 0: Drive forward motor 1
+     * 1: Drive backwards motor 1
+     * 4: Drive forward motor 2
+     * 5: Drive backwards motor 2
+     */
 
+    uint8_t cmd, value;
+
+    /* Set the command offset (which motor is which)
+     * As of now the only valid inputs are 1 and 2.
+     * Not sure how to handle invalid inputs.
+     * I'm going to assume people don't make mistakes.
+     */
+    if (settings.motor_num == SABER_MOTOR_1) {
+        cmd = 0;
+    } else if (settings.motor_num == SABER_MOTOR_2) {
+        cmd = 4;
+    }
+
+    /* Change settings based on direction
+     */
+    if (speed >= 0) { // If you're going forwards:
+        value = speed;
+    } else { // If you're going backwards
+        value = abs(speed);
+        cmd += 1; // Set command to run motor backwards
+    }
+
+    /* Actually send command
+     */
+    this->sendCommand(cmd, value);
+}

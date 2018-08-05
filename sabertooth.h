@@ -43,14 +43,14 @@ typedef struct {
  */
 class SaberMotor {
     public:
-        SaberMotor(uint8_t address, uint8_t motor_num, uint8_t baudrate);
+        SaberMotor(uint8_t address, saber_motor_t motor_num, uint8_t baudrate);
 
-        void setSpeedMotor(int8_t speed);
+        void setMotorSpeed(int8_t speed);
 
         // These config functions apply to both channels
         void setRampingRate(uint8_t ramp_setting);
         void setDeadband(uint8_t deadband);
-        saber_err_t setBaudRate(uint8_t);
+        void setBaudRate(uint8_t);
 
         // This *shouldn't* be used but I'm exposing it here anyways
         void serialInit(uint8_t baudrate);
