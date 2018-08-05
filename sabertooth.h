@@ -53,7 +53,7 @@ typedef struct {
  */
 class SaberMotor {
     public:
-        SaberMotor(uint8_t address, saber_motor_t motor_num, uint8_t baudrate);
+        SaberMotor(uint8_t address, saber_motor_t motor_num, uint32_t baudrate);
 
         void setMotorSpeed(int8_t speed);
 

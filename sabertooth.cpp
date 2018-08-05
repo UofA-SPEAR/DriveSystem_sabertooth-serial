@@ -7,7 +7,7 @@
  *
  * @details Changes a few settings variables and initialises serial at a baudrate.
  */
-SaberMotor::SaberMotor(uint8_t address, saber_motor_t motor_num, uint8_t baudrate) {
+SaberMotor::SaberMotor(uint8_t address, saber_motor_t motor_num, uint32_t baudrate) {
     settings.address = address;
     settings.motor_num = motor_num;
 
