@@ -14,6 +14,11 @@ typedef enum {
     SABER_INVALID_VALUE,
 } saber_err_t;
 
+typedef enum {
+    SABER_MOTOR_1 = 1,
+    SABER_MOTOR_2 = 2
+} saber_motor_t;
+
 typedef struct {
     int8_t speed;
 
