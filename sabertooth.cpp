@@ -10,6 +10,20 @@
 SaberMotor::SaberMotor(uint8_t address, uint8_t motor_num, uint8_t baudrate) {
     settings.address = address;
     settings.motor_num = motor_num;
+
+    this->serialInit(baudrate);
+}
+
+/**@brief Function to initialise soft serial interface
+ */
+void SaberMotor::serialInit(uint8_t baudrate) {
+    // End serial in case it's running
+    saber_serial.end();
+
+    // Restart serial at specified baudrate
+    saber_serial.begin(baudrate);
+
+    settings.baudrate = baudrate;
 }
 
 /**@brief Function for sending command over serial.
