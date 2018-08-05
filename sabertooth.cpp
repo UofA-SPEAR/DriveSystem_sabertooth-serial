@@ -92,3 +92,16 @@ saber_err_t SaberMotor::setRampingRate(uint8_t ramp_setting) {
         return SABER_SUCCESS;
     }
 }
+
+/**@brief Function to set deadband of motor drivers
+ *
+ * @note valid settings are 0-127
+ */
+saber_err_t SaberMotor::setDeadband(uint8_t deadband) {
+    if (deadband > 127) { // Invalid value
+        return SABER_INVALID_VALUE;
+    } else {
+        this->sendCommand(17, deadband);
+        return SABER_SUCCESS;
+    }
+}
