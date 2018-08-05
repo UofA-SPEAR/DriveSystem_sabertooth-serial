@@ -105,3 +105,11 @@ saber_err_t SaberMotor::setDeadband(uint8_t deadband) {
         return SABER_SUCCESS;
     }
 }
+
+/**@brief Function to set baud rate of motor driver.
+ *
+ * @note only pass saber_baud_t
+ */
+void SaberMotor::setBaudRate(saber_baud_t baudrate) {
+    this->sendCommand(15, baudrate);
+}

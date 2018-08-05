@@ -19,6 +19,14 @@ typedef enum {
     SABER_MOTOR_2 = 2
 } saber_motor_t;
 
+typedef enum {
+    SABER_BAUD_2400     = 1,
+    SABER_BAUD_9600     = 2,
+    SABER_BAUD_19200    = 3,
+    SABER_BAUD_38400    = 4,
+    SABER_BAUD_115200   = 5
+} saber_baud_t;
+
 typedef struct {
     int8_t speed;
 
@@ -52,7 +60,7 @@ class SaberMotor {
         // These config functions apply to both channels
         saber_err_t setRampingRate(uint8_t ramp_setting);
         saber_err_t setDeadband(uint8_t deadband);
-        saber_err_t setBaudRate(uint8_t baudrate);
+        void        setBaudRate(saber_baud_t baudrate);
         saber_err_t setMinVoltage(float min_voltage);
         saber_err_t setMaxVoltage(float max_voltage);
 
