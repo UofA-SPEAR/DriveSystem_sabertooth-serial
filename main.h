@@ -1,14 +1,11 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-
-typedef enum {
-    CMD_POWER,
-    CMD_TURNING
-} cmd_type_t;
+#define SIDE_RIGHT  'R'
+#define SIDE_LEFT   'L'
 
 typedef struct {
-    cmd_type_t type;
+    char side;
     int8_t value;
 } cmd_t;
 

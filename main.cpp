@@ -30,13 +30,14 @@ void loop() {
 static void handle_command(cmd_t * cmd) {
     Serial.println("Command recieved!");
 
-    if (cmd->type == CMD_POWER) {
-        Serial.print("Power %: ");
-    } else if (cmd->type ==CMD_TURNING) {
-        Serial.print("Turning angle: ");
+    if (cmd->direction == SIDE_LEFT) {
+        Serial.print("Left turn at ");
+    } else if (cmd->direction == SIDE_RIGHT) {
+        Serial.print("Right turn at ");
     }
 
-    Serial.println(cmd->value);
+    Serial.print(cmd->value);
+    Serial.println("%");
 }
 
 
@@ -47,11 +48,6 @@ static void read_serial_command(cmd_t * cmd) {
 
     Serial.readBytes(buf, 2);
     
-    if (buf[0] == 'P') {
-        cmd->type = CMD_POWER;
-    } else if (buf[0] == 'T') {
-        cmd->type = CMD_TURNING;
-    }
-
+    cmd->side  = (char) buf[0];
     cmd->value = (int8_t) buf[1]; // this may not work, needs testing
 }
