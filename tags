@@ -5,6 +5,9 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 BOARD_TAG	Makefile	/^BOARD_TAG	 = uno$/;"	m
+CMD_POWER	main.h	/^    CMD_POWER,$/;"	e	enum:__anon5
+CMD_TURNING	main.h	/^    CMD_TURNING$/;"	e	enum:__anon5
+MAIN_H_	main.h	2;"	d
 MONITER_PORT	Makefile	/^MONITER_PORT = \/dev\/ttyACM0$/;"	m
 SABERTOOTH_H_	sabertooth.h	2;"	d
 SABER_BAUD_115200	sabertooth.h	/^    SABER_BAUD_115200   = 5$/;"	e	enum:__anon3
@@ -22,12 +25,17 @@ SaberMotor	sabertooth.cpp	/^SaberMotor::SaberMotor(uint8_t address, saber_motor_
 SaberMotor	sabertooth.h	/^class SaberMotor {$/;"	c
 address	sabertooth.h	/^    uint8_t address;$/;"	m	struct:__anon4
 baudrate	sabertooth.h	/^    uint8_t baudrate;$/;"	m	struct:__anon4
+cmd_t	main.h	/^} cmd_t;$/;"	t	typeref:struct:__anon6
+cmd_type_t	main.h	/^} cmd_type_t;$/;"	t	typeref:enum:__anon5
+command	main.cpp	/^cmd_t command;$/;"	v
 deadband	sabertooth.h	/^    uint8_t deadband;$/;"	m	struct:__anon4
+handle_command	main.cpp	/^static void handle_command(cmd_t * cmd) {$/;"	f	file:
 loop	main.cpp	/^void loop() {$/;"	f
 max_voltage	sabertooth.h	/^    float max_voltage;$/;"	m	struct:__anon4
 min_voltage	sabertooth.h	/^    float min_voltage;$/;"	m	struct:__anon4
 motor_num	sabertooth.h	/^    uint8_t motor_num;$/;"	m	struct:__anon4
 ramp_setting	sabertooth.h	/^    uint8_t ramp_setting;$/;"	m	struct:__anon4
+read_serial_command	main.cpp	/^static void read_serial_command(cmd_t * cmd) {$/;"	f	file:
 saber_baud_t	sabertooth.h	/^} saber_baud_t;$/;"	t	typeref:enum:__anon3
 saber_channel_settings_t	sabertooth.h	/^} saber_channel_settings_t;$/;"	t	typeref:struct:__anon4
 saber_err_t	sabertooth.h	/^} saber_err_t;$/;"	t	typeref:enum:__anon1
@@ -43,3 +51,5 @@ setRampingRate	sabertooth.cpp	/^saber_err_t SaberMotor::setRampingRate(uint8_t r
 settings	sabertooth.h	/^        saber_channel_settings_t settings;$/;"	m	class:SaberMotor
 setup	main.cpp	/^void setup() {$/;"	f
 speed	sabertooth.h	/^    int8_t speed;$/;"	m	struct:__anon4
+type	main.h	/^    cmd_type_t type;$/;"	m	struct:__anon6
+value	main.h	/^    int8_t value;$/;"	m	struct:__anon6
