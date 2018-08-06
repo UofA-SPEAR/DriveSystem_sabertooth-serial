@@ -15,6 +15,8 @@ As far as I'm aware it should work, people are welcome to review the datasheet a
 
 ## Control Interface ##
 
+TODO: switch it over to left/right instead of power/angle
+
 For now the drive system is controlled via serial over USB.
 The command is a 2-byte "packet" with information on the type of change in motion and magnitude.
 The first byte is a value that specifies if you're changing power or turning direction,
