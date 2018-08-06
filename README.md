@@ -15,18 +15,14 @@ As far as I'm aware it should work, people are welcome to review the datasheet a
 
 ## Control Interface ##
 
-TODO: switch it over to left/right instead of power/angle
-
 For now the drive system is controlled via serial over USB.
-The command is a 2-byte "packet" with information on the type of change in motion and magnitude.
-The first byte is a value that specifies if you're changing power or turning direction,
-a letter encoded in ASCII, P and T, respectively. The second is a signed integer specifying the magnitude.
+The command is a 2-byte "packet" with information on the side and the power level.
+The first byte is a value that specifies which side you are controlling, it's
+a letter encoded in ASCII, L or R for left and right, respectively.
+The second is a signed integer specifying the magnitude.
 
-For power, the values can range from -100 to +100, representing power in percent.
-For turning, the values can range from -90 to 90, representing an angle I guess.
-Not too sure on exactly how this should be implemented but that can be changed later.
+The value is a signed integer from -100 to 100, specifying reverse and forward power, in percent.
 
 Some examples:
-- "P35": go forward at 35% power.
-- "T-45": turn left at 45 degrees or something.
-- "P-90": back up at 90% power.
+- "L35" and "R60" would make the rover turn to the left.
+- "L-100" and "R-100" would make the rover go full power, backwards. (Please don't do this ever)
