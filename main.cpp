@@ -18,7 +18,7 @@ void setup() {
 }
 
 void loop() {
-    if (Serial.available() == 2) {
+    if (Serial.available() >= 2) {
         read_serial_command(&command);
 
         handle_command(&command);
