@@ -11,6 +11,7 @@ SaberMotor left_front(129, SABER_MOTOR_1, 9600);
 SaberMotor left_back(129, SABER_MOTOR_2, 9600);
 
 cmd_t command;
+uint32_t time = 0;
 
 void setup() {
     // Serial init
@@ -23,6 +24,20 @@ void loop() {
 
         handle_command(&command);
     }
+
+    if ( (millis() - time) > 1000 ) { // if more than 1s has elapsed without a command
+        handle_timeout();
+    }
+
+}
+
+/**@brief Function to handle a command timeout.
+ *
+ * @details Turns all motors off.
+ */
+static void handle_timeout() {
+    time = millis();
+
 }
 
 /**@brief Function to handle a command
@@ -42,6 +57,8 @@ static void handle_command(cmd_t * cmd) {
 
 
 /**@brief Function to read in a serial command
+ *
+ * @note Also resets the time variable for timeouts
  */
 static void read_serial_command(cmd_t * cmd) {
     uint8_t buf[2];
@@ -50,4 +67,6 @@ static void read_serial_command(cmd_t * cmd) {
     
     cmd->side  = (char) buf[0];
     cmd->value = (int8_t) buf[1]; // this may not work, needs testing
+
+    time = millis();
 }
