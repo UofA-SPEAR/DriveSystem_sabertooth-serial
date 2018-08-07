@@ -26,3 +26,5 @@ The value is a signed integer from -100 to 100, specifying reverse and forward p
 Some examples:
 - "L35" and "R60" would make the rover turn to the left.
 - "L-100" and "R-100" would make the rover go full power, backwards. (Please don't do this ever)
+
+If it does not recieve a signal in 1s, it will time out and set the motors to 0.
