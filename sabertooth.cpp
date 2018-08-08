@@ -3,6 +3,8 @@
 
 #include "sabertooth.h"
 
+SoftwareSerial saber_serial(SABER_RX, SABER_TX);
+
 /**@brief Constructor function for SaberMotor class.
  *
  * @details Changes a few settings variables and initialises serial at a baudrate.

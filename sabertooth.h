@@ -7,7 +7,6 @@
 #define SABER_RX    10 // This pin will be unused
 #define SABER_TX    11 // Doesn't really matter what this is
 
-SoftwareSerial saber_serial(SABER_RX, SABER_TX);
 
 typedef enum {
     SABER_SUCCESS,

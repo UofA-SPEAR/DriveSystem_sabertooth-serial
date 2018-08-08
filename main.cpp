@@ -16,6 +16,11 @@ uint32_t time = 0;
 void setup() {
     // Serial init
     Serial.begin(9600);
+
+    right_front.setRampingRate(30);
+    left_front.setRampingRate(30);
+    right_front.setMinVoltage(12);
+    left_front.setMinVoltage(12);
 }
 
 void loop() {
@@ -38,21 +43,27 @@ void loop() {
 static void handle_timeout() {
     time = millis();
 
+    right_front.setMotorSpeed(0);
+    right_back.setMotorSpeed(0);
+    left_front.setMotorSpeed(0);
+    left_back.setMotorSpeed(0);
 }
 
 /**@brief Function to handle a command
  */
 static void handle_command(cmd_t * cmd) {
-    Serial.println("Command recieved!");
 
-    if (cmd->direction == SIDE_LEFT) {
-        Serial.print("Left turn at ");
-    } else if (cmd->direction == SIDE_RIGHT) {
-        Serial.print("Right turn at ");
+    if (cmd->side == SIDE_LEFT) {
+        left_front.setMotorSpeed(cmd->value);
+        left_back.setMotorSpeed(cmd->value);
+    } else if (cmd->side == SIDE_RIGHT) {
+        right_front.setMotorSpeed(cmd->value);
+        right_back.setMotorSpeed(cmd->value);
+    } else {
+        while(Serial.read() != -1);
     }
 
-    Serial.print(cmd->value);
-    Serial.println("%");
+
 }
 
 
@@ -61,7 +72,7 @@ static void handle_command(cmd_t * cmd) {
  * @note Also resets the time variable for timeouts
  */
 static void read_serial_command(cmd_t * cmd) {
-    uint8_t buf[2];
+    char buf[2];
 
     Serial.readBytes(buf, 2);
     
