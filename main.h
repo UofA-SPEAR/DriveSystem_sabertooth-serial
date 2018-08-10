@@ -3,6 +3,13 @@
 
 #define SIDE_RIGHT  'R'
 #define SIDE_LEFT   'L'
+#define SIDE_TOP    'T'
+#define SIDE_BOTTOM 'B'
+
+#define WHEEL_TOP_LEFT     'Q'
+#define WHEEL_TOP_RIGHT    'W'
+#define WHEEL_BOTTOM_LEFT  'A'
+#define WHEEL_BOTTOM_RIGHT 'S'
 
 typedef struct {
     char side;

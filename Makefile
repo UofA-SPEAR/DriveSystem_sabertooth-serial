@@ -18,7 +18,12 @@ endif
 
 # Board Model Tag
 ifndef BOARD_TAG
-BOARD_TAG = mega2560 
+BOARD_TAG = mega
+endif
+
+# required for mega with atmega2560 chip
+ifndef BOARD_SUB
+BOARD_SUB = atmega2560
 endif
 
 # Arduino Included Libraries

@@ -53,17 +53,38 @@ static void handle_timeout() {
  */
 static void handle_command(cmd_t * cmd) {
 
-    if (cmd->side == SIDE_LEFT) {
-        left_front.setMotorSpeed(cmd->value);
-        left_back.setMotorSpeed(cmd->value);
-    } else if (cmd->side == SIDE_RIGHT) {
-        right_front.setMotorSpeed(cmd->value);
-        right_back.setMotorSpeed(cmd->value);
-    } else {
-        while(Serial.read() != -1);
+    switch(cmd->side){
+        case SIDE_TOP:
+            right_front.setMotorSpeed(cmd->value);
+            left_front.setMotorSpeed(cmd->value);
+            break;
+        case SIDE_BOTTOM:
+            left_back.setMotorSpeed(cmd->value);
+            right_back.setMotorSpeed(cmd->value);
+            break;
+        case SIDE_RIGHT:
+            right_front.setMotorSpeed(cmd->value);
+            right_back.setMotorSpeed(cmd->value);
+            break;
+        case SIDE_LEFT:
+            left_front.setMotorSpeed(cmd->value);
+            left_back.setMotorSpeed(cmd->value);
+            break;
+        case WHEEL_TOP_LEFT:
+            left_front.setMotorSpeed(cmd->value);
+            break;
+        case WHEEL_TOP_RIGHT:
+            right_front.setMotorSpeed(cmd->value);
+            break;
+        case WHEEL_BOTTOM_LEFT:
+            left_back.setMotorSpeed(cmd->value);
+            break;
+        case WHEEL_BOTTOM_RIGHT:
+            right_back.setMotorSpeed(cmd->value);
+            break;
+        default:
+            while(Serial.read() != -1);
     }
-
-
 }
 
 
