@@ -92,7 +92,7 @@ static void handle_command(cmd_t * cmd) {
  *
  * @note Also resets the time variable for timeouts
  */
-static void read_serial_command(cmd_t * cmd) {
+static cmd_err_t read_serial_command(cmd_t * cmd) {
     char buf[5];
 
     Serial.readBytes(buf, 5);

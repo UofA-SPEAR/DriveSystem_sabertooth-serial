@@ -23,6 +23,6 @@ typedef enum {
 
 static void handle_timeout(void);
 static void handle_command(cmd_t * cmd);
-static void read_serial_command(cmd_t * cmd);
+static cmd_err_t read_serial_command(cmd_t * cmd);
 
 #endif
