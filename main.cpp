@@ -103,7 +103,7 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
     char check = buf[3];
     char end = buf[4];
 
-    if(start != 2 && end != 3 && 
+    if(start != 2 || end != 3 || 
             check != ((uint8_t)(((uint8_t)buf[1]) + ((uint8_t)buf[2])))){
         return CMD_ERR_INVALID;
     }
