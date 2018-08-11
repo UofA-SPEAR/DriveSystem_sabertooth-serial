@@ -103,6 +103,17 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
     char check = buf[3];
     char end = buf[4];
 
+    Serial.print(buf[0]);
+    Serial.print(" ");
+    Serial.print(buf[1]);
+    Serial.print(" ");
+    Serial.print(buf[2]);
+    Serial.print(" ");
+    Serial.print(buf[3]);
+    Serial.print(" ");
+    Serial.print(buf[4]);
+    Serial.print("\n");
+
     if(start != 2 || end != 3 || 
             check != ((uint8_t)(((uint8_t)buf[1]) + ((uint8_t)buf[2])))){
         return CMD_ERR_INVALID;
