@@ -16,6 +16,11 @@ typedef struct {
     int8_t value;
 } cmd_t;
 
+typedef enum {
+    CMD_SUCCESS,
+    CMD_ERR_INVALID,
+} cmd_err_t;
+
 static void handle_timeout(void);
 static void handle_command(cmd_t * cmd);
 static void read_serial_command(cmd_t * cmd);

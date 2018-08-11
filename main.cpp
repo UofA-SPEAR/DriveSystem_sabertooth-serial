@@ -24,10 +24,10 @@ void setup() {
 }
 
 void loop() {
-    if (Serial.available() >= 2) {
-        read_serial_command(&command);
-
-        handle_command(&command);
+    if (Serial.available() >= 5) {
+        if(read_serial_command(&command) == CMD_SUCCESS) {
+            handle_command(&command);
+        }
     }
 
     if ( (millis() - time) > 1000 ) { // if more than 1s has elapsed without a command
@@ -93,12 +93,20 @@ static void handle_command(cmd_t * cmd) {
  * @note Also resets the time variable for timeouts
  */
 static void read_serial_command(cmd_t * cmd) {
-    char buf[2];
+    char buf[5];
 
-    Serial.readBytes(buf, 2);
+    Serial.readBytes(buf, 5);
     
-    cmd->side  = (char) buf[0];
-    cmd->value = (int8_t) buf[1]; // this may not work, needs testing
+    char start = buf[0];
+    cmd->side  = (char) buf[1];
+    cmd->value = (int8_t) buf[2]; // this may not work, needs testing
+    char check = buf[3];
+    char end = buf[4];
+
+    if(start != 2 && end != 3 && check != (buf[1] + buf[2])){
+        return CMD_ERR_INVALID;
+    }
 
     time = millis();
+    return CMD_SUCCESS;
 }
