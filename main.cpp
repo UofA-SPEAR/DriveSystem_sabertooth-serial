@@ -113,7 +113,7 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
     Serial.print(" ");
     Serial.print((uint8_t)check);
     Serial.print(" ");
-    Serial.print(buf[4]);
+    Serial.print((uint8_t)buf[4]);
 
     char checksum = ((uint8_t)buf[1]) + ((uint8_t)buf[2]);
     if(start != 2 || end != 3 || (check != checksum)){
