@@ -27,6 +27,8 @@ void loop() {
     if (Serial.available() >= 5) {
         if(read_serial_command(&command) == CMD_SUCCESS) {
             handle_command(&command);
+        }else{
+            while(Serial.read() != -1);
         }
     }
 
@@ -103,13 +105,13 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
     char check = buf[3];
     char end = buf[4];
 
-    Serial.print(buf[0]);
+    Serial.print((uint8_t)buf[0]);
     Serial.print(" ");
     Serial.print(buf[1]);
     Serial.print(" ");
-    Serial.print(buf[2]);
+    Serial.print((uint8_t)buf[2]);
     Serial.print(" ");
-    Serial.print(buf[3]);
+    Serial.print((uint8_t)buf[3]);
     Serial.print(" ");
     Serial.print(buf[4]);
 
@@ -120,11 +122,12 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
         Serial.print(check);
         Serial.print(" | Got: ");
         Serial.print(checksum);
-        Serial.print("\n");
+        Serial.print("\n\r");
         return CMD_ERR_INVALID;
     }
-
-    Serial.print("\n");
+   
+    Serial.print(" Accepted");
+    Serial.print("\n\r");
     time = millis();
     return CMD_SUCCESS;
 }
