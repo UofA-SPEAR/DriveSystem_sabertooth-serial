@@ -112,13 +112,19 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
     Serial.print(buf[3]);
     Serial.print(" ");
     Serial.print(buf[4]);
-    Serial.print("\n");
 
-    if(start != 2 || end != 3 || 
-            check != ((uint8_t)(((uint8_t)buf[1]) + ((uint8_t)buf[2])))){
+    char checksum = ((uint8_t)buf[1]) + ((uint8_t)buf[2]);
+    if(start != 2 || end != 3 || (check != checksum)){
+
+        Serial.print("   Wanted: ");
+        Serial.print(check);
+        Serial.print(" | Got: ");
+        Serial.print(checksum);
+        Serial.print("\n");
         return CMD_ERR_INVALID;
     }
 
+    Serial.print("\n");
     time = millis();
     return CMD_SUCCESS;
 }
