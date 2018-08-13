@@ -107,11 +107,11 @@ static cmd_err_t read_serial_command(cmd_t * cmd) {
 
     Serial.print((uint8_t)buf[0]);
     Serial.print(" ");
-    Serial.print(buf[1]);
+    Serial.print(cmd->side);
     Serial.print(" ");
-    Serial.print((uint8_t)buf[2]);
+    Serial.print(cmd->value);
     Serial.print(" ");
-    Serial.print((uint8_t)buf[3]);
+    Serial.print((uint8_t)check);
     Serial.print(" ");
     Serial.print(buf[4]);
 
